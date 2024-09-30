@@ -29,36 +29,35 @@ int main(int argc, char *argv[])
 
 	for (int i = 0; i < number_line; i++) {
 
-		char *line = read_file(argv[1], i);
+        char * line = read_file(argv[1], i);
 
-		if (!is_comment(line)) {
+
+        if (!is_comment(line)) {
 
 			char **function = get_function(line);
 			if (function[0][0] != '0') {
 
 				int is_default =
-				    is_default_function(function[1],
-							numbers_name,
-							number_value,
-							number_numbers,
-							floats_name,
-							float_value,
+				    is_default_function(function[1], numbers_name,
+							number_value, number_numbers,
+							floats_name, float_value,
 							number_floats);
 
 			}
 
-		}
 
-		free(line);
+        }
+
+        free(line);
 
 	}
 
-	free(numbers_name);
-	free(number_value);
-	free(floats_name);
-	free(float_value);
-	free(strings_name);
-	free(strings_value);
+    free(numbers_name);
+    free(number_value);
+    free(floats_name);
+    free(float_value);
+    free(strings_name);
+    free(strings_value);
 
 	return 0;
 

@@ -3,6 +3,7 @@
 ---
 
 # Test with copy this file
+
 ```
 function a(a: int, b:int) -> None {
     print(f"{a} + {b} = {a + b}");
@@ -24,10 +25,17 @@ function main() {
 }
 ```
 
-# Build 
+# Build
+
 ```
 mkdir build-dir
 cmake ..
 make 
 ./my_language example.ma
+```
+
+# Indent
+
+```
+indent -linux src/*.c
 ```
