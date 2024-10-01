@@ -3,7 +3,6 @@
 
 char *get_attribution(char *line)
 {
-
 	int i = 0;
 	int count = 0;
 
@@ -26,12 +25,10 @@ char *get_attribution(char *line)
 	result[i] = '\0';
 
 	return result;
-
 }
 
 char *get_name(char *line)
 {
-
 	int i = 0;
 	int count = 0;
 
@@ -56,16 +53,10 @@ char *get_name(char *line)
 	result[i] = '\0';
 
 	return result;
-
 }
 
-char **get_function(char *line)
+char *get_function(char *line, int *type_line)
 {
-	/*
-	   0 -> false
-	   else -> function name
-	 */
-
 	int i = 0;
 	int j = 0;
 
@@ -76,26 +67,52 @@ char **get_function(char *line)
 		i++;
 	}
 
-	char *function_name = (char *)malloc(j + 1 * sizeof(char));
+	if (j == 0) {
+		*type_line = 0;
+	} else {
+		*type_line = 1;
+	}
 
-	char *function_args = (char *)malloc(i - j + 1 * sizeof(char));
+	char *function_name = malloc(j + 1 * sizeof(char));
 
 	i = 0;
 
-	while (line[i] != '(') {
+	while (i != j) {
 		function_name[i] = line[i];
 		i++;
 	}
 
-	j++;
-	while (line[j] != '\0' && line[j] != ')') {
-		function_args[j] = line[j];
+	function_name[i] = '\0';
+
+	return function_name;
+}
+
+char *get_param_function(char *line)
+{
+	int i = 0;
+	int j = 0;
+	int count = 0;
+
+	while (line[i] != '\0') {
+		if (line[i] == '(') {
+			j = i;
+		}
+		i++;
+	}
+
+	char *function_name = malloc(i - j + 1 * sizeof(char));
+
+	while (i != j) {
+
+		if (line[j] != '(' && line[j] != ')' && line[j] != ';'
+		    && line[j] != ' ') {
+			function_name[count] = line[j];
+			count++;
+		}
 		j++;
 	}
 
-	char **result = malloc(2 * sizeof(char *));
-	result[0] = function_name;
-	result[1] = function_args;
-	return result;
+	function_name[count] = '\0';
 
+	return function_name;
 }

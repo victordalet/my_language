@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "print.h"
@@ -60,17 +61,13 @@ int is_attribution(char *line)
 	return result;
 }
 
-int is_default_function(char *line, char **int_name, int *int_values,
-			int int_count, char **float_name, float *float_values,
-			int float_count)
+int is_default_function(char *line, char *param, char **int_name,
+			int *int_values, int int_count, char **float_name,
+			float *float_values, int float_count)
 {
-	/*
-	   0 -> false
-	   1 -> true
-	 */
 
 	if (strcmp(line, "print") == 0) {
-		print(line, int_name, int_values, int_count, float_name,
+		print(param, int_name, int_values, int_count, float_name,
 		      float_values, float_count);
 		return 1;
 	}
@@ -80,11 +77,9 @@ int is_default_function(char *line, char **int_name, int *int_values,
 
 int is_comment(char *line)
 {
-
 	if (line[0] == '#') {
 		return 1;
 	}
 
 	return 0;
-
 }

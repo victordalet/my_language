@@ -21,7 +21,7 @@ void print(char *str, char **int_name, int *int_values, int int_count,
 				i++;
 				j = 0;
 
-				char *name = (char *)malloc(100);
+				char *name = malloc(100);
 				while (str[i] != '}') {
 
 					name[j] = str[i];

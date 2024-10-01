@@ -6,11 +6,12 @@
 
 int main(int argc, char *argv[])
 {
-
 	if (argc != 2) {
 		printf("Usage: %s <file_name>\n", argv[0]);
 		return 1;
 	}
+
+	int type_line = 0;
 
 	int number_line = get_number_line_in_file(argv[1]);
 
@@ -28,29 +29,30 @@ int main(int argc, char *argv[])
 	char **strings_value = malloc(number_strings * sizeof(char *));
 
 	for (int i = 0; i < number_line; i++) {
-
 		char *line = read_file(argv[1], i);
 
 		if (!is_comment(line)) {
 
-			char **function = get_function(line);
-			if (function[0][0] != '0') {
+			char *function = get_function(line, &type_line);
 
-				int is_default =
-				    is_default_function(function[1],
-							numbers_name,
-							number_value,
-							number_numbers,
-							floats_name,
-							float_value,
-							number_floats);
+			if (type_line == 1) {
 
+				char *param = get_param_function(line);
+
+				is_default_function(function,
+						    param,
+						    numbers_name,
+						    number_value,
+						    number_numbers,
+						    floats_name,
+						    float_value, number_floats);
+
+				free(param);
 			}
 
+			free(function);
 		}
-
-		free(line);
-
+		//free(line);
 	}
 
 	free(numbers_name);
@@ -61,5 +63,4 @@ int main(int argc, char *argv[])
 	free(strings_value);
 
 	return 0;
-
 }
