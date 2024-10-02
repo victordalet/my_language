@@ -8,5 +8,6 @@ add_executable(my_language main.c
         src/spliter.c
         src/print.c
         src/finder.c
+        src/var.c
 )
 

@@ -10,4 +10,8 @@ int is_default_function(char *line, char* param,char **int_name, int *int_values
 
 int is_comment(char *line);
 
+int is_var(char *line);
+
+int is_int(char *line);
+
 #endif				//FINDER_H

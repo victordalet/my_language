@@ -65,7 +65,6 @@ int is_default_function(char *line, char *param, char **int_name,
 			int *int_values, int int_count, char **float_name,
 			float *float_values, int float_count)
 {
-
 	if (strcmp(line, "print") == 0) {
 		print(param, int_name, int_values, int_count, float_name,
 		      float_values, float_count);
@@ -81,5 +80,35 @@ int is_comment(char *line)
 		return 1;
 	}
 
+	return 0;
+}
+
+int is_var(char *line)
+{
+	int i = 0;
+	while (line[i] != '\0') {
+
+		if (line[i] == '=' && line[i + 1] != '=') {
+			return 1;
+		}
+		i++;
+	}
+	return 0;
+}
+
+int is_int(char *line)
+{
+	int i = 0;
+	while (line[i] != '\0') {
+
+		if (line[i] == '"') {
+			return 0;
+		}
+
+		if (line[i] == '=' && line[i + 1] != '=') {
+			return 1;
+		}
+		i++;
+	}
 	return 0;
 }
