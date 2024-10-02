@@ -37,20 +37,18 @@ void print(char *str, char **int_name, int *int_values, int int_count,
 						printf("%d", int_values[k]);
 						break;
 					}
-
-					for (int k = 0; k < float_count; k++) {
-						if (strcmp(name, float_name[k])
-						    == 0) {
-							printf("%f",
-							       float_values[k]);
-							break;
-						}
-					}
-
-					free(name);
 				}
-			} else {
 
+				for (int k = 0; k < float_count; k++) {
+					if (strcmp(name, float_name[k])
+					    == 0) {
+						printf("%f", float_values[k]);
+						break;
+					}
+				}
+
+				free(name);
+			} else {
 				if (str[i] != '"') {
 					printf("%c", str[i]);
 				}

@@ -87,7 +87,6 @@ int is_var(char *line)
 {
 	int i = 0;
 	while (line[i] != '\0') {
-
 		if (line[i] == '=' && line[i + 1] != '=') {
 			return 1;
 		}
@@ -100,7 +99,6 @@ int is_int(char *line)
 {
 	int i = 0;
 	while (line[i] != '\0') {
-
 		if (line[i] == '"') {
 			return 0;
 		}
@@ -110,5 +108,31 @@ int is_int(char *line)
 		}
 		i++;
 	}
+	return 0;
+}
+
+int is_float(char *line)
+{
+	int i = 0;
+	int equal = 0;
+	int point = 0;
+	while (line[i] != '\0') {
+		if (line[i] == '"') {
+			return 0;
+		}
+
+		if (line[i] == '=' && line[i + 1] != '=') {
+			equal = 1;
+		}
+		if (line[i] == '.' && equal) {
+			point = 1;
+		}
+		i++;
+	}
+
+	if (equal && point) {
+		return 1;
+	}
+
 	return 0;
 }

@@ -34,7 +34,13 @@ int main(int argc, char *argv[])
 
 		if (!is_comment(line)) {
 			if (is_var(line)) {
-				if (is_int(line)) {
+
+				if (is_float(line)) {
+					add_float(floats_name, float_value,
+						  &count_floats, line);
+				}
+
+				else if (is_int(line)) {
 					add_int(numbers_name, number_value,
 						&count_number, line);
 				}
@@ -67,9 +73,10 @@ int main(int argc, char *argv[])
 	/*for (int i = 0 ; i < count_strings ; i++) {
 	   free(strings_name[i]);
 	   }
-	   for (int i = 0 ; i < count_floats ; i++) {
+	*/
+	for (int i = 0 ; i < count_floats ; i++) {
 	   free(floats_name[i]);
-	   } */
+	}
 	free(numbers_name);
 	free(number_value);
 	free(floats_name);

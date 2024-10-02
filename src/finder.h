@@ -14,4 +14,6 @@ int is_var(char *line);
 
 int is_int(char *line);
 
+int is_float(char *line);
+
 #endif				//FINDER_H
