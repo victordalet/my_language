@@ -34,13 +34,13 @@ int main(int argc, char *argv[])
 
 		if (!is_comment(line)) {
 			if (is_var(line)) {
-
-				if (is_float(line)) {
+				if (is_string(line)) {
+					add_string(strings_name, strings_value,
+						   &count_strings, line);
+				} else if (is_float(line)) {
 					add_float(floats_name, float_value,
 						  &count_floats, line);
-				}
-
-				else if (is_int(line)) {
+				} else if (is_int(line)) {
 					add_int(numbers_name, number_value,
 						&count_number, line);
 				}
@@ -57,7 +57,10 @@ int main(int argc, char *argv[])
 							    count_number,
 							    floats_name,
 							    float_value,
-							    count_floats);
+							    count_floats,
+							    strings_name,
+							    strings_value,
+							    count_strings);
 
 					free(param);
 				}
@@ -70,10 +73,10 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < count_number; i++) {
 		free(numbers_name[i]);
 	}
-	/*for (int i = 0 ; i < count_strings ; i++) {
-	   free(strings_name[i]);
-	   }
-	 */
+	for (int i = 0; i < count_strings; i++) {
+		free(strings_name[i]);
+	}
+
 	for (int i = 0; i < count_floats; i++) {
 		free(floats_name[i]);
 	}
@@ -83,6 +86,8 @@ int main(int argc, char *argv[])
 	free(float_value);
 	free(strings_name);
 	free(strings_value);
+
+	printf("\n");
 
 	return 0;
 }

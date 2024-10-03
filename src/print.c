@@ -3,8 +3,10 @@
 #include <string.h>
 
 void print(char *str, char **int_name, int *int_values, int int_count,
-	   char **float_name, float *float_values, int float_count)
+	   char **float_name, float *float_values, int float_count,
+	   char **string_name, char **string_values, int count_string)
 {
+
 	int i = 0;
 	int j = 0;
 
@@ -47,6 +49,14 @@ void print(char *str, char **int_name, int *int_values, int int_count,
 					}
 				}
 
+				for (int k = 0; k < count_string; k++) {
+					if (strcmp(name, string_name[k])
+					    == 0) {
+						printf("%s", string_values[k]);
+						break;
+					}
+				}
+
 				free(name);
 			} else {
 				if (str[i] != '"') {
@@ -58,5 +68,4 @@ void print(char *str, char **int_name, int *int_values, int int_count,
 		i++;
 	}
 
-	printf("\n");
 }

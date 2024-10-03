@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 
 char *get_attribution(char *line)
 {
@@ -13,7 +12,7 @@ char *get_attribution(char *line)
 		i++;
 	}
 
-	char *result = (char *)malloc(i - count + 1 * sizeof(char));
+	char *result = malloc(i - count + 1 * sizeof(char));
 
 	i = 0;
 
@@ -40,7 +39,7 @@ char *get_name(char *line)
 		i++;
 	}
 
-	char *result = (char *)malloc(count + 1 * sizeof(char));
+	char *result = malloc(count + 1 * sizeof(char));
 
 	i = 0;
 
@@ -104,8 +103,7 @@ char *get_param_function(char *line)
 
 	while (i != j) {
 
-		if (line[j] != '(' && line[j] != ')' && line[j] != ';'
-		    && line[j] != ' ') {
+		if (line[j] != '(' && line[j] != ')' && line[j] != ';') {
 			function_name[count] = line[j];
 			count++;
 		}
