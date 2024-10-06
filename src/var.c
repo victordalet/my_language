@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void add_int(char **name, int *values, int *count, char *line)
 {
@@ -61,6 +62,15 @@ void add_int(char **name, int *values, int *count, char *line)
 		}
 
 		mid++;
+	}
+
+	/*--------------------------------------------------------------*/
+
+	for (int j = 0; j < *count; j++) {
+		if (!strcmp(name[j], var_name)) {
+			values[j] = number;
+			return;
+		}
 	}
 
 	values[*count] = number;
@@ -166,6 +176,15 @@ void add_float(char **name, float *values, int *count, char *line)
 		multiply_decimal *= 10;
 	}
 
+	/*--------------------------------------------------------------*/
+
+	for (int j = 0; j < *count; j++) {
+		if (!strcmp(name[j], var_name)) {
+			values[j] = (number + decimal) / multiply_decimal;
+			return;
+		}
+	}
+
 	values[*count] = (number + decimal) / multiply_decimal;
 
 	*count += 1;
@@ -247,6 +266,15 @@ void add_string(char **name, char **values, int *count, char *line)
 	}
 
 	new_value[number_char - 1] = '\0';
+
+	/*--------------------------------------------------------------*/
+
+	for (int j = 0; j < *count; j++) {
+		if (!strcmp(name[j], var_name)) {
+			values[j] = new_value;
+			return;
+		}
+	}
 
 	values[*count] = new_value;
 
