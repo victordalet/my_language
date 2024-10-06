@@ -93,8 +93,10 @@ int is_var(char *line)
 {
 	int i = 0;
 	while (line[i] != '\0') {
-		if (line[i] == '=' && line[i + 1] != '=') {
-			return 1;
+		if (line[i] == '=' ) {
+            if (line[i + 1] != '=')
+				return 1;
+            return 0;
 		}
 		i++;
 	}
@@ -245,8 +247,10 @@ int is_method(char *line)
 
 int is_condition(char *line)
 {
+	char strcopy[100];
+	strcpy(strcopy,line);
 
-	char *first_element = strtok(line, " ");
+	char *first_element = strtok(strcopy, " ");
 
 	if (!strcmp(first_element, "if")) {
 		return 1;

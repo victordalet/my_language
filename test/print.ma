@@ -1,5 +1,5 @@
 print("Hello World!");
-a = 221.2;
+a = 221.4;
 b = "salut";
 print(f"Hello {a}!");
 print(f"{b}");
@@ -12,4 +12,5 @@ print(f"{c}")
 c.append(7)
 print(f"{c}")
 d = 3
-if (d == 2): print("Test ok")
+if (23 == 23): print("Test ok")
+print(f"{d}")

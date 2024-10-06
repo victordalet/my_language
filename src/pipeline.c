@@ -72,7 +72,6 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 		}
 
 		else if (is_method(line)) {
-
 			if (is_append_method(line)) {
 				append_array_int(int_array_name,
 						 int_array_value,
@@ -90,6 +89,17 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 			}
 
 		}
+
+        else if (is_condition(line)) {
+        	if (condition(line)) {
+        		pipeline(line, numbers_name, number_value, count_number,
+				   floats_name, float_value, count_floats,
+				   strings_name, strings_value, count_strings,
+				   int_array_name, int_array_value,
+				   count_number_int_array, int_array_size_value);
+        	}
+
+        }
 
 		else {
 			char *function = get_function(line, &type_line);
