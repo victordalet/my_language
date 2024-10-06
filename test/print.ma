@@ -11,6 +11,9 @@ c.pop()
 print(f"{c}")
 c.append(7)
 print(f"{c}")
-d = 3
-if (23 == 23): print("Test ok")
+d = 2
+if (d <= 21): print("Test ok")
+if (d != 21): print("Test 2 ok")
+if (d == 21): print("Test 3 not ok")
+if (d < 21): print("Test 4  ok")
 print(f"{d}")
