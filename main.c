@@ -5,6 +5,7 @@
 #include "src/spliter.h"
 #include "src/var.h"
 #include "src/append.h"
+#include "src/pop.h"
 
 int main(int argc, char *argv[])
 {
@@ -98,12 +99,20 @@ int main(int argc, char *argv[])
 			}
 
 			else if (is_method(line)) {
+
 				if (is_append_method(line)) {
 					append_array_int(int_array_name,
 							 int_array_value,
 							 count_number_int_array,
 							 int_array_size_value,
 							 is_method(line), line);
+
+				} else if (is_pop_method(line)) {
+					pop_array_int(int_array_name,
+						      int_array_value,
+						      count_number_int_array,
+						      int_array_size_value,
+						      is_method(line), line);
 
 				}
 

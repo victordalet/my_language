@@ -7,14 +7,11 @@ void append_array_int(char **int_array_name, int **int_array_values,
 		      char *line)
 {
 
-
 	char *var_name = strtok(line, ".");
-
 
 	for (int i = 0; i < int_array_count; i++) {
 
 		if (!strcmp(var_name, int_array_name[i])) {
-
 
 			int_array_values[i] =
 			    realloc(int_array_values[i],

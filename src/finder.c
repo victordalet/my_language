@@ -206,6 +206,8 @@ int is_method(char *line)
 {
 	int have_point = 0;
 	int parameter = 0;
+	int start = 0;
+	int stop = 0;
 
 	int count = 0;
 
@@ -216,10 +218,26 @@ int is_method(char *line)
 		}
 
 		if (have_point && line[count] == '(') {
-			return (int)line[count + 1] - 48;
+			start = count + 1;
+		}
+
+		if (have_point && line[count] == ')') {
+			stop = count;
+			break;
 		}
 
 		count++;
+	}
+
+	if (have_point && start) {
+
+		if (start == stop)
+			return 1;
+
+		char *value = malloc(sizeof(char) * stop - start + 1);
+		strncpy(value, &line[start], stop - start);
+		value[stop - start] = '\0';
+		return atoi(value);
 	}
 
 	return 0;
