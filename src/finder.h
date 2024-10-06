@@ -25,4 +25,6 @@ int is_method(char *line);
 
 int is_condition(char *line);
 
+int is_else_condition(char *line);
+
 #endif

@@ -151,3 +151,17 @@ int condition(char *line, char **numbers_name, int *number_value,
 	return 0;
 
 }
+
+void remove_else(char *line)
+{
+
+	char strcopy[100];
+	strcpy(strcopy, line);
+
+	char *element;
+	for (element = strtok(strcopy, ":"); element; element = strtok(NULL, ":")) {
+		memmove(element, element + 1, strlen(element));
+		strcpy(line, element);
+	}
+
+}
