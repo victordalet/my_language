@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "src/parser.h"
 #include "src/finder.h"
 #include "src/spliter.h"
@@ -9,14 +10,12 @@
 
 int main(int argc, char *argv[])
 {
-	if (argc != 2) {
-		printf("Usage: %s <file_name>\n", argv[0]);
-		return 1;
-	}
 
 	int type_line = 0;
+	int number_line = 1;
 
-	int number_line = get_number_line_in_file(argv[1]);
+	if (argc >= 2)
+		number_line = get_number_line_in_file(argv[1]);
 
 	int count_number = 0;
 	int count_strings = 0;
@@ -38,7 +37,17 @@ int main(int argc, char *argv[])
 	    malloc(count_number_int_array * sizeof(int));
 
 	for (int i = 0; i < number_line; i++) {
-		char *line = read_file(argv[1], i);
+		char *line;
+		if (argc >= 2)
+			line = read_file(argv[1], i);
+		else {
+			scanf("%s", line);
+			if (strcmp(line, "exit")) {
+				number_line++;
+			} else {
+				break;
+			}
+		}
 
 		if (!is_comment(line)) {
 			if (is_var(line)) {
