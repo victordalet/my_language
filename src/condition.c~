@@ -159,7 +159,8 @@ void remove_else(char *line)
 	strcpy(strcopy, line);
 
 	char *element;
-	for (element = strtok(strcopy, ":"); element; element = strtok(NULL, ":")) {
+	for (element = strtok(strcopy, ":"); element;
+	     element = strtok(NULL, ":")) {
 		memmove(element, element + 1, strlen(element));
 		strcpy(line, element);
 	}

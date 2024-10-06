@@ -1,5 +1,6 @@
 print("Hello World!");
-a = 221.4;
+a = 31;
+a = 42;
 b = "salut";
 print(f"Hello {a}!");
 print(f"{b}");
