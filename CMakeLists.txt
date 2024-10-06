@@ -9,5 +9,7 @@ add_executable(my_language main.c
         src/print.c
         src/finder.c
         src/var.c
+        src/pop.c
+        src/append.c
 )
 
