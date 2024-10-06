@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 {
 
 	int number_line = 1;
+	int last_condition = 0;
 
 	if (argc >= 2)
 		number_line = get_number_line_in_file(argv[1]);
@@ -54,7 +55,8 @@ int main(int argc, char *argv[])
 			 floats_name, float_value, &count_floats,
 			 strings_name, strings_value, &count_strings,
 			 int_array_name, int_array_value,
-			 &count_number_int_array, int_array_size_value);
+			 &count_number_int_array, int_array_size_value,
+			 &last_condition);
 
 		free(line);
 	}

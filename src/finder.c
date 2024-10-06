@@ -256,10 +256,22 @@ int is_condition(char *line)
 	if (!strcmp(first_element, "if")) {
 		return 1;
 	}
-	if (!strcmp(first_element, "else")) {
-		return 2;
-	}
 
 	return 0;
 
+}
+
+int is_else_condition(char *line)
+{
+
+	char strcopy[100];
+	strcpy(strcopy, line);
+
+	char *first_element = strtok(strcopy, ":");
+
+	if (!strcmp(first_element, "else")) {
+		return 1;
+	}
+
+	return 0;
 }
