@@ -11,5 +11,7 @@ add_executable(my_language main.c
         src/var.c
         src/pop.c
         src/append.c
+        src/condition.c
+        src/pipeline.c
 )
 

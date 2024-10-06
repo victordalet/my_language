@@ -7,15 +7,16 @@
 #include "src/var.h"
 #include "src/append.h"
 #include "src/pop.h"
+#include "src/condition.h"
+#include "src/pipeline.h"
 
 int main(int argc, char *argv[])
 {
 
-	int type_line = 0;
-    int number_line = 1;
+	int number_line = 1;
 
-    if (argc >= 2)
-      number_line = get_number_line_in_file(argv[1]);
+	if (argc >= 2)
+		number_line = get_number_line_in_file(argv[1]);
 
 	int count_number = 0;
 	int count_strings = 0;
@@ -37,122 +38,25 @@ int main(int argc, char *argv[])
 	    malloc(count_number_int_array * sizeof(int));
 
 	for (int i = 0; i < number_line; i++) {
-        char *line;
-        if (argc >= 2)
-		  line  = read_file(argv[1], i);
-        else {
-          scanf("%s",line);
-          if (strcmp(line,"exit")) {
-            number_line++;
-          } else {break;}
-        }
-
-		if (!is_comment(line)) {
-			if (is_var(line)) {
-				if (is_string(line)) {
-					strings_name =
-					    realloc(strings_name,
-						    sizeof(char *) *
-						    count_strings + 1);
-					strings_value =
-					    realloc(strings_value,
-						    sizeof(char *) *
-						    count_strings + 1);
-					add_string(strings_name, strings_value,
-						   &count_strings, line);
-				} else if (is_tab_of_int(line)) {
-
-					int_array_name =
-					    realloc(int_array_name,
-						    sizeof(char *) *
-						    count_number_int_array + 1);
-					int_array_value =
-					    realloc(int_array_value,
-						    sizeof(int *) *
-						    count_number_int_array + 1);
-					int_array_size_value =
-					    realloc(int_array_size_value,
-						    sizeof(int) *
-						    count_number_int_array + 1);
-					add_int_array(int_array_name,
-						      int_array_value,
-						      int_array_size_value,
-						      &count_number_int_array,
-						      line);
-
-				} else if (is_float(line)) {
-					floats_name =
-					    realloc(floats_name,
-						    sizeof(char *) *
-						    count_floats + 1);
-					float_value =
-					    realloc(float_value,
-						    sizeof(float) *
-						    count_floats + 1);
-					add_float(floats_name, float_value,
-						  &count_floats, line);
-				} else if (is_int(line)) {
-					numbers_name =
-					    realloc(numbers_name,
-						    sizeof(char *) *
-						    count_number + 1);
-					number_value =
-					    realloc(number_value,
-						    sizeof(int) * count_number +
-						    1);
-					add_int(numbers_name, number_value,
-						&count_number, line);
-				}
-			}
-
-			else if (is_method(line)) {
-
-				if (is_append_method(line)) {
-					append_array_int(int_array_name,
-							 int_array_value,
-							 count_number_int_array,
-							 int_array_size_value,
-							 is_method(line), line);
-
-				} else if (is_pop_method(line)) {
-					pop_array_int(int_array_name,
-						      int_array_value,
-						      count_number_int_array,
-						      int_array_size_value,
-						      is_method(line), line);
-
-				}
-
-			}
-
-			else {
-				char *function = get_function(line, &type_line);
-
-				if (type_line == 1) {
-					char *param = get_param_function(line);
-
-					is_default_function(function,
-							    param,
-							    numbers_name,
-							    number_value,
-							    count_number,
-							    floats_name,
-							    float_value,
-							    count_floats,
-							    strings_name,
-							    strings_value,
-							    count_strings,
-							    int_array_name,
-							    int_array_value,
-							    count_number_int_array,
-							    int_array_size_value);
-
-					free(param);
-				}
-				free(function);
+		char *line = malloc(sizeof(char) * 100);
+		if (argc >= 2)
+			line = read_file(argv[1], i);
+		else {
+			scanf("%s", line);
+			if (strcmp(line, "exit")) {
+				number_line++;
+			} else {
+				break;
 			}
 		}
-		//free(line);
+
+		pipeline(line, numbers_name, number_value, &count_number,
+			 floats_name, float_value, &count_floats,
+			 strings_name, strings_value, &count_strings,
+			 int_array_name, int_array_value,
+			 &count_number_int_array, int_array_size_value);
+
+		free(line);
 	}
 
 	for (int i = 0; i < count_number; i++) {
