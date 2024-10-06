@@ -4,8 +4,10 @@
 
 void print(char *str, char **int_name, int *int_values, int int_count,
 	   char **float_name, float *float_values, int float_count,
-	   char **string_name, char **string_values, int count_string)
+	   char **string_name, char **string_values, int count_string,
+	   char ** int_array_name, int ** int_array_values, int int_array_count, int * int_array_size)
 {
+
 
 	int i = 0;
 	int j = 0;
@@ -34,6 +36,16 @@ void print(char *str, char **int_name, int *int_values, int int_count,
 
 				name[j] = '\0';
 
+				for (int k = 0; k < int_array_count; k++) {
+					if (strcmp(name, int_array_name[k])
+						== 0) {
+						for (int l = 0 ; l < int_array_size[k] ; l++) {
+							printf("%d,",int_array_values[k][l]);
+						}
+						break;
+						}
+				}
+
 				for (int k = 0; k < int_count; k++) {
 					if (strcmp(name, int_name[k]) == 0) {
 						printf("%d", int_values[k]);
@@ -56,6 +68,7 @@ void print(char *str, char **int_name, int *int_values, int int_count,
 						break;
 					}
 				}
+
 
 				free(name);
 			} else {

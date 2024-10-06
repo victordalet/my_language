@@ -65,12 +65,15 @@ int is_default_function(char *line, char *param, char **int_name,
 			int *int_values, int int_count, char **float_name,
 			float *float_values, int float_count,
 			char **string_name, char **string_values,
-			int count_string)
+			int count_string, char **int_array_name,
+			int **int_array_values, int int_array_count,
+			int *int_array_size)
 {
 	if (strcmp(line, "print") == 0) {
 		print(param, int_name, int_values, int_count, float_name,
 		      float_values, float_count, string_name, string_values,
-		      count_string);
+		      count_string, int_array_name, int_array_values,
+		      int_array_count, int_array_size);
 		return 1;
 	}
 
@@ -195,6 +198,29 @@ int is_tab_of_int(char *line)
 
 	if (have_equal && crochet == 2)
 		return 1;
+
+	return 0;
+}
+
+int is_method(char *line)
+{
+	int have_point = 0;
+	int parameter = 0;
+
+	int count = 0;
+
+	while (line[count] != '\0') {
+
+		if (line[count] == '.' && count != 0) {
+			have_point = 1;
+		}
+
+		if (have_point && line[count] == '(') {
+			return (int)line[count + 1] - 48;
+		}
+
+		count++;
+	}
 
 	return 0;
 }

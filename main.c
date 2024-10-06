@@ -4,6 +4,7 @@
 #include "src/finder.h"
 #include "src/spliter.h"
 #include "src/var.h"
+#include "src/append.h"
 
 int main(int argc, char *argv[])
 {
@@ -71,19 +72,6 @@ int main(int argc, char *argv[])
 						      &count_number_int_array,
 						      line);
 
-					for (int a = 0;
-					     a < count_number_int_array; a++) {
-						for (int b = 0;
-						     b <
-						     int_array_size_value[a];
-						     b++) {
-							printf("%d ",
-							       int_array_value
-							       [a][b]);
-						}
-						printf("\n");
-					}
-
 				} else if (is_float(line)) {
 					floats_name =
 					    realloc(floats_name,
@@ -107,7 +95,21 @@ int main(int argc, char *argv[])
 					add_int(numbers_name, number_value,
 						&count_number, line);
 				}
-			} else {
+			}
+
+			else if (is_method(line)) {
+				if (is_append_method(line)) {
+					append_array_int(int_array_name,
+							 int_array_value,
+							 count_number_int_array,
+							 int_array_size_value,
+							 is_method(line), line);
+
+				}
+
+			}
+
+			else {
 				char *function = get_function(line, &type_line);
 
 				if (type_line == 1) {
@@ -123,7 +125,11 @@ int main(int argc, char *argv[])
 							    count_floats,
 							    strings_name,
 							    strings_value,
-							    count_strings);
+							    count_strings,
+							    int_array_name,
+							    int_array_value,
+							    count_number_int_array,
+							    int_array_size_value);
 
 					free(param);
 				}
