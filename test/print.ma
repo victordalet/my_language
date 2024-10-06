@@ -11,3 +11,5 @@ c.pop()
 print(f"{c}")
 c.append(7)
 print(f"{c}")
+d = 3
+if (d == 2): print("Test ok")

@@ -23,4 +23,6 @@ int is_tab_of_int(char *line);
 
 int is_method(char *line);
 
-#endif				//FINDER_H
+int is_condition(char *line);
+
+#endif

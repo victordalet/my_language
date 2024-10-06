@@ -242,3 +242,20 @@ int is_method(char *line)
 
 	return 0;
 }
+
+int is_condition(char *line) {
+
+	char *first_element = strtok(line, " ");
+
+
+    if (!strcmp(first_element,"if")) {
+      	return 1;
+    }
+    if (!strcmp(first_element,"else")) {
+      	return 2;
+    }
+
+    return 0;
+
+
+}
