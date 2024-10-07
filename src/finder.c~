@@ -117,25 +117,25 @@ int is_default_function(char *line, char *param, char **int_name,
 	}
 
 	if (!strcmp(line, "keyEvent")) {
-		char *name = strtok(param, ",");
-		char *index = strtok(NULL, ",");
-		char *x = strtok(NULL, ",");
-		char *y = strtok(NULL, ",");
-		touche_name =
-		    realloc(touche_name, sizeof(char) * *touche_number + 1);
-		touche_image_index_postion =
-		    realloc(touche_image_index_postion,
-			    sizeof(int) * *touche_number + 1);
-		touche_image_x_action =
-		    realloc(touche_image_x_action,
-			    sizeof(char) * *touche_number + 1);
-		touche_image_y_action =
-		    realloc(touche_image_y_action,
-			    sizeof(char) * *touche_number + 1);
-		touche_image_index_postion[*touche_number] = atoi(index);
-		touche_image_x_action[*touche_number] = atoi(x);
-		touche_image_y_action[*touche_number] = atoi(y);
-		(*touche_number)++;
+        char *name = strtok(param, ",");
+        char *index = strtok(NULL, ",");
+        char *x = strtok(NULL, ",");
+        char *y = strtok(NULL, ",");
+        touche_name =
+            realloc(touche_name, sizeof(char) * *touche_number + 1);
+        touche_image_index_postion =
+            realloc(touche_image_index_postion,
+                sizeof(int) * *touche_number + 1);
+        touche_image_x_action =
+            realloc(touche_image_x_action,
+                sizeof(char) * *touche_number + 1);
+        touche_image_y_action =
+            realloc(touche_image_y_action,
+                sizeof(char) * *touche_number + 1);
+        touche_image_index_postion[*touche_number] = atoi(index);
+        touche_image_x_action[*touche_number] = atoi(x);
+        touche_image_y_action[*touche_number] = atoi(y);
+        (*touche_number)++;
 	}
 
 	return 0;

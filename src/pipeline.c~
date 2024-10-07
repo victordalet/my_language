@@ -14,7 +14,10 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 	      int *count_floats, char **strings_name, char **strings_value,
 	      int *count_strings, char **int_array_name, int **int_array_value,
 	      int *count_number_int_array, int *int_array_size_value,
-	      int *last_condition)
+	      int *image_number, char **image_url, int *image_x_position,
+	      int *image_y_position, int *last_condition, int *touche_number,
+	      char *touche_name, int *touche_image_index_postion,
+	      char *touche_image_x_action, char *touche_image_y_action)
 {
 
 	int type_line = 0;
@@ -37,7 +40,11 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 				 count_floats, strings_name, strings_value,
 				 count_strings, int_array_name, int_array_value,
 				 count_number_int_array, int_array_size_value,
-				 last_condition);
+				 image_number, image_url, image_x_position,
+				 image_y_position, last_condition,
+				 touche_number, touche_name,
+				 touche_image_index_postion,
+				 touche_image_x_action, touche_image_y_action);
 		}
 	}
 
@@ -125,7 +132,13 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 					 strings_value, count_strings,
 					 int_array_name, int_array_value,
 					 count_number_int_array,
-					 int_array_size_value, last_condition);
+					 int_array_size_value, image_number,
+					 image_url, image_x_position,
+					 image_y_position, last_condition,
+					 touche_number, touche_name,
+					 touche_image_index_postion,
+					 touche_image_x_action,
+					 touche_image_y_action);
 			}
 
 		}
@@ -139,7 +152,13 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 					 strings_value, count_strings,
 					 int_array_name, int_array_value,
 					 count_number_int_array,
-					 int_array_size_value, last_condition);
+					 int_array_size_value, image_number,
+					 image_url, image_x_position,
+					 image_y_position, last_condition,
+					 touche_number, touche_name,
+					 touche_image_index_postion,
+					 touche_image_x_action,
+					 touche_image_y_action);
 			}
 		}
 
@@ -163,7 +182,16 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 						    int_array_name,
 						    int_array_value,
 						    *count_number_int_array,
-						    int_array_size_value);
+						    int_array_size_value,
+						    image_number,
+						    image_url,
+						    image_x_position,
+						    image_y_position,
+						    touche_number,
+						    touche_name,
+						    touche_image_index_postion,
+						    touche_image_x_action,
+						    touche_image_y_action);
 
 				free(param);
 			}

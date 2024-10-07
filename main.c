@@ -9,6 +9,8 @@
 #include "src/pop.h"
 #include "src/condition.h"
 #include "src/pipeline.h"
+#include "src/view.h"
+#include <SDL2/SDL.h>
 
 int main(int argc, char *argv[])
 {
@@ -38,17 +40,28 @@ int main(int argc, char *argv[])
 	int *int_array_size_value =
 	    malloc(count_number_int_array * sizeof(int));
 
+	/*--------------------------------------------------------------------------*/
+
+	int image_number = 0;
+	char **image_url = malloc(sizeof(char *) * image_number);
+	int *image_x_position = malloc(sizeof(int *) * image_number);
+	int *image_y_position = malloc(sizeof(int *) * image_number);
+
+	int touche_number = 0;
+	char *touche_name = malloc(sizeof(char) * touche_number);
+	int *touche_image_index_postion = malloc(sizeof(int) * touche_number);
+	char *touche_image_x_action = malloc(sizeof(char) * touche_number);
+	char *touche_image_y_action = malloc(sizeof(char) * touche_number);
+
+    /*--------------------------------------------------------------------------*/
+
 	for (int i = 0; i < number_line; i++) {
 		char *line = malloc(sizeof(char) * 100);
 		if (argc >= 2)
 			line = read_file(argv[1], i);
 		else {
 			scanf("%s", line);
-			if (strcmp(line, "exit")) {
-				number_line++;
-			} else {
-				break;
-			}
+			number_line++;
 		}
 
 		pipeline(line, numbers_name, number_value, &count_number,
@@ -56,10 +69,53 @@ int main(int argc, char *argv[])
 			 strings_name, strings_value, &count_strings,
 			 int_array_name, int_array_value,
 			 &count_number_int_array, int_array_size_value,
-			 &last_condition);
-
+			 &image_number, image_url, image_x_position,
+			 image_y_position, &last_condition, &touche_number,
+			 touche_name, touche_image_index_postion,
+			 touche_image_x_action, touche_image_y_action);
 		free(line);
 	}
+
+	/*--------------------------------------------------------------------------*/
+
+	if (image_number > 0) {
+		SDL_Window *window = init_view(argv[1]);
+		SDL_Renderer *renderer = init_renderer(window);
+		SDL_Texture **images =
+		    malloc(sizeof(SDL_Texture *) * image_number);
+
+		for (int i = 0; i < image_number; i++) {
+
+			images[i] = load_picture(image_url[i], renderer);
+		}
+
+		while (1) {
+			SDL_Delay(30);
+			clear_renderer(renderer);
+
+			for (int i = 0; i < image_number; i++) {
+				display_picture(renderer, images[i],
+						image_x_position[i],
+						image_y_position[i], 100, 100);
+			}
+
+			SDL_Event event;
+			while (SDL_PollEvent(&event)) {
+				if (event.type == SDL_QUIT) {
+					SDL_DestroyRenderer(renderer);
+					SDL_DestroyWindow(window);
+					SDL_Quit();
+					return 0;
+				}
+			}
+
+			SDL_RenderPresent(renderer);
+
+		}
+
+	}
+
+	/*--------------------------------------------------------------------------*/
 
 	for (int i = 0; i < count_number; i++) {
 		free(numbers_name[i]);
@@ -75,6 +131,9 @@ int main(int argc, char *argv[])
 		free(int_array_name[i]);
 		free(int_array_value[i]);
 	}
+	for (int i = 0; i < image_number; i++) {
+		free(image_url[i]);
+	}
 	free(numbers_name);
 	free(number_value);
 	free(floats_name);
@@ -84,6 +143,9 @@ int main(int argc, char *argv[])
 	free(int_array_name);
 	free(int_array_value);
 	free(int_array_size_value);
+	free(image_url);
+	free(image_x_position);
+	free(image_y_position);
 
 	printf("\n");
 
