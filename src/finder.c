@@ -69,11 +69,24 @@ int is_default_function(char *line, char *param, char **int_name,
 			int **int_array_values, int int_array_count,
 			int *int_array_size)
 {
-	if (strcmp(line, "print") == 0) {
+	if (!strcmp(line, "print")) {
 		print(param, int_name, int_values, int_count, float_name,
 		      float_values, float_count, string_name, string_values,
 		      count_string, int_array_name, int_array_values,
 		      int_array_count, int_array_size);
+		return 1;
+	}
+
+	if (!strcmp(line, "system")) {
+		int i = 0;
+		while (param[i] != '\0') {
+			if (param[i] == '"') {
+				memmove(param + i, param + i + 1,
+					strlen(param) - i);
+			}
+			i++;
+		}
+		system(param);
 		return 1;
 	}
 

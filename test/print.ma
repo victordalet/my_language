@@ -21,5 +21,6 @@ if (d == 21): print("Test 3 not ok")
 else: print("Test 3 ok")
 if (d < 21): print("Test 4 ok")
 #print(f"{d}")
+system("touch test.txt");
 for i in range(0, 10, 1): print(f"{i}")
 while (d < 10): print(f"{d}"); d = d + 1

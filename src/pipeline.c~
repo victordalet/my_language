@@ -19,30 +19,27 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 
 	int type_line = 0;
 
-
-    int number_point_virgule_in_line = 0;
-    int i = 0;
-    while (line[i] != '\0') {
+	int number_point_virgule_in_line = 0;
+	int i = 0;
+	while (line[i] != '\0') {
 		if (line[i] == ';') {
 			number_point_virgule_in_line++;
 		}
 		i++;
 	}
 
-    if (number_point_virgule_in_line > 0) {
+	if (number_point_virgule_in_line > 0) {
 		char *line_splited = strtok(line, ";");
-    	for (int i = 0 ; i < number_point_virgule_in_line ; i++) {
-    		line_splited = strtok(NULL, ";");
-    		pipeline(line_splited, numbers_name, number_value,
+		for (int i = 0; i < number_point_virgule_in_line; i++) {
+			line_splited = strtok(NULL, ";");
+			pipeline(line_splited, numbers_name, number_value,
 				 count_number, floats_name, float_value,
 				 count_floats, strings_name, strings_value,
 				 count_strings, int_array_name, int_array_value,
 				 count_number_int_array, int_array_size_value,
 				 last_condition);
-    	}
+		}
 	}
-
-
 
 	if (!is_comment(line)) {
 		if (is_var(line)) {
