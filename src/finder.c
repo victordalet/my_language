@@ -275,3 +275,31 @@ int is_else_condition(char *line)
 
 	return 0;
 }
+
+int is_for_loop(char *line)
+{
+	char strcopy[100];
+	strcpy(strcopy, line);
+
+	char *first_element = strtok(strcopy, " ");
+
+	if (!strcmp(first_element, "for")) {
+		return 1;
+	}
+
+	return 0;
+}
+
+int is_while_loop(char *line)
+{
+	char strcopy[100];
+	strcpy(strcopy, line);
+
+	char *first_element = strtok(strcopy, " ");
+
+	if (!strcmp(first_element, "while")) {
+		return 1;
+	}
+
+	return 0;
+}

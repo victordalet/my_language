@@ -27,4 +27,8 @@ int is_condition(char *line);
 
 int is_else_condition(char *line);
 
+int is_for_loop(char *line);
+
+int is_while_loop(char *line);
+
 #endif
