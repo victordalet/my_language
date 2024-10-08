@@ -18,6 +18,7 @@ add_executable(my_language main.c
         src/condition.c
         src/pipeline.c
         src/view.c
+        src/press_event.c
 )
 
 target_link_libraries(my_language ${SDL2_LIBRARIES})

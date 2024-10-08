@@ -13,8 +13,7 @@ int is_default_function(char *line, char *param, char **int_name,
 			char **image_url, int *image_x_position,
 			int *image_y_position, int *touche_number,
 			char *touche_name, int *touche_image_index_postion,
-			char *touche_image_x_action,
-			char *touche_image_y_action);
+			int *touche_image_x_action, int *touche_image_y_action);
 
 int is_comment(char *line);
 

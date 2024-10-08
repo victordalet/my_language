@@ -10,6 +10,7 @@
 #include "src/condition.h"
 #include "src/pipeline.h"
 #include "src/view.h"
+#include "src/press_event.h"
 #include <SDL2/SDL.h>
 
 int main(int argc, char *argv[])
@@ -50,9 +51,10 @@ int main(int argc, char *argv[])
 	int touche_number = 0;
 	char *touche_name = malloc(sizeof(char) * touche_number);
 	int *touche_image_index_postion = malloc(sizeof(int) * touche_number);
-	char *touche_image_x_action = malloc(sizeof(char) * touche_number);
-	char *touche_image_y_action = malloc(sizeof(char) * touche_number);
+	int *touche_image_x_action = malloc(sizeof(char) * touche_number);
+	int *touche_image_y_action = malloc(sizeof(char) * touche_number);
 
+	int KEYS[322] = { 0 };
     /*--------------------------------------------------------------------------*/
 
 	for (int i = 0; i < number_line; i++) {
@@ -99,14 +101,32 @@ int main(int argc, char *argv[])
 						image_y_position[i], 100, 100);
 			}
 
+			add_action_press_event(image_x_position,
+					       image_y_position,
+					       &last_condition, &touche_number,
+					       touche_name,
+					       touche_image_index_postion,
+					       touche_image_x_action,
+					       touche_image_y_action, KEYS);
+
 			SDL_Event event;
 			while (SDL_PollEvent(&event)) {
+
 				if (event.type == SDL_QUIT) {
 					SDL_DestroyRenderer(renderer);
 					SDL_DestroyWindow(window);
 					SDL_Quit();
 					return 0;
 				}
+
+				if (event.type == SDL_KEYDOWN) {
+					KEYS[event.key.keysym.scancode] = 1;
+				}
+
+				if (event.type == SDL_KEYUP) {
+					KEYS[event.key.keysym.scancode] = 0;
+				}
+
 			}
 
 			SDL_RenderPresent(renderer);

@@ -71,8 +71,7 @@ int is_default_function(char *line, char *param, char **int_name,
 			char **image_url, int *image_x_position,
 			int *image_y_position, int *touche_number,
 			char *touche_name, int *touche_image_index_postion,
-			char *touche_image_x_action,
-			char *touche_image_y_action)
+			int *touche_image_x_action, int *touche_image_y_action)
 {
 	if (!strcmp(line, "print")) {
 		print(param, int_name, int_values, int_count, float_name,
@@ -128,10 +127,11 @@ int is_default_function(char *line, char *param, char **int_name,
 			    sizeof(int) * *touche_number + 1);
 		touche_image_x_action =
 		    realloc(touche_image_x_action,
-			    sizeof(char) * *touche_number + 1);
+			    sizeof(int) * *touche_number + 1);
 		touche_image_y_action =
 		    realloc(touche_image_y_action,
-			    sizeof(char) * *touche_number + 1);
+			    sizeof(int) * *touche_number + 1);
+		touche_name[*touche_number] = name[1];
 		touche_image_index_postion[*touche_number] = atoi(index);
 		touche_image_x_action[*touche_number] = atoi(x);
 		touche_image_y_action[*touche_number] = atoi(y);
