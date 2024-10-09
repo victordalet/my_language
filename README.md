@@ -30,6 +30,15 @@ if (d < 21): print("Test 4 ok")
 print(f"{d}")
 ```
 
+# Dependencies
+
+---
+
+```
+sudo apt-get install libsdl2-dev
+```
+
+
 # Build
 
 ```
@@ -42,5 +51,7 @@ make
 # Indent
 
 ```
+indent -linux main.c
 indent -linux src/*.c
+indent -linux src/*.h
 ```
