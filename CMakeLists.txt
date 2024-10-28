@@ -19,6 +19,9 @@ add_executable(my_language main.c
         src/pipeline.c
         src/view.c
         src/press_event.c
+        src/min.c
+        src/sort.c
+        src/max.c
 )
 
 target_link_libraries(my_language ${SDL2_LIBRARIES})
