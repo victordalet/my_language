@@ -44,25 +44,8 @@ void add_int(char **name, int *values, int *count, char *line)
 
     /*--------------------------------------------------------------*/
 
-	while (line[i] != '\0') {
-		if (line[i] >= 48 && line[i] <= 57) {
-			count_number_in_number++;
-			multiply *= 10;
-		}
-
-		i++;
-	}
-
-	multiply /= 10;
-
-	while (line[mid] != '\0') {
-		if (line[mid] >= 48 && line[mid] <= 57) {
-			number += (line[mid] - 48) * multiply;
-			multiply /= 10;
-		}
-
-		mid++;
-	}
+	char *line_split = strchr(line, '=') + 1;
+	number = result_calcul(line_split, name, values, *count);
 
 	/*--------------------------------------------------------------*/
 

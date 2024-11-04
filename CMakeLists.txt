@@ -22,7 +22,8 @@ add_executable(my_language main.c
         src/min.c
         src/sort.c
         src/max.c
+        src/calcul.c
 )
 
-target_link_libraries(my_language ${SDL2_LIBRARIES})
+target_link_libraries(my_language -lm ${SDL2_LIBRARIES})
 

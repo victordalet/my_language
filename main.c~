@@ -11,6 +11,8 @@
 #include "src/pipeline.h"
 #include "src/view.h"
 #include "src/press_event.h"
+#include "src/calcul.h"
+#include <math.h>
 #include <SDL2/SDL.h>
 
 int main(int argc, char *argv[])
