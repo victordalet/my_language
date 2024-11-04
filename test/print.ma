@@ -3,6 +3,10 @@ a = 31
 a = 42
 b = "salut"
 print(f"Hello {a}!")
+result = 31 + 42 * 2
+print(f"{result}")
+resultb = result + 3 ** 2
+print(f"{resultb}")
 print(f"{b}")
 c = [1,2,3]
 print(f"{c}")
