@@ -64,8 +64,9 @@ int result_calcul(char *string, char **name_variable, int *value_variable,
 			case '/':
 				numbers[i + 1] = numbers[i] / numbers[i + 1];
 				break;
-            case 'p':
-				numbers[i + 1] = (int)pow(numbers[i],numbers[i + 1]);
+			case 'p':
+				numbers[i + 1] =
+				    (int)pow(numbers[i], numbers[i + 1]);
 				break;
 			}
 			numbers[i] = 0;
