@@ -9,4 +9,3 @@ if (d < 21): print("Test 4 ok")
 #print(f"{d}")
 system("touch test.txt")
 while (d < 10): print(f"{d}"); d = d + 1
-for i in range(0, 10, 1): print(f"{i}")
