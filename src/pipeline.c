@@ -180,6 +180,12 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 			}
 		}
 
+        else if (is_while_loop(line)) {
+        	if (condition(line, numbers_name, number_value, *count_number)) {
+                 printf("while");
+        	}
+        }
+
 		else {
 			char *function = get_function(line, &type_line);
 
