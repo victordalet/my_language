@@ -87,4 +87,6 @@ void print(char *str, char **int_name, int *int_values, int int_count,
 		i++;
 	}
 
+    printf("\n");
+
 }
