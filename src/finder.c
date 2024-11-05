@@ -150,20 +150,7 @@ int is_comment(char *line)
 	return 0;
 }
 
-int is_var(char *line)
-{
-	int i = 0;
-	while (line[i] != '\0') {
-		if (line[i] == '=' && line[i - 1] != '!' && line[i - 1] != '<'
-		    && line[i - 1] != '>') {
-			if (line[i + 1] != '=')
-				return 1;
-			return 0;
-		}
-		i++;
-	}
-	return 0;
-}
+
 
 int is_int(char *line)
 {
@@ -362,5 +349,26 @@ int is_while_loop(char *line)
 		return 1;
 	}
 
+	return 0;
+}
+
+int is_var(char *line)
+{
+
+	if (is_while_loop(line) || is_for_loop(line) || is_condition(line) || is_else_condition(line))
+		return 0;
+
+
+
+	int i = 0;
+	while (line[i] != '\0') {
+		if (line[i] == '=' && line[i - 1] != '!' && line[i - 1] != '<'
+			&& line[i - 1] != '>') {
+			if (line[i + 1] != '=')
+				return 1;
+			return 0;
+			}
+		i++;
+	}
 	return 0;
 }

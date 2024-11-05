@@ -34,7 +34,10 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 		i++;
 	}
 
-	if (number_point_virgule_in_line > 0) {
+    if (is_while_loop(line) || is_for_loop(line) || is_else_condition(line) || is_condition(line) )
+    	number_point_virgule_in_line = 0;
+
+	if (number_point_virgule_in_line > 0 ) {
 		char *line_splited = strtok(line, ";");
 		for (int i = 0; i < number_point_virgule_in_line; i++) {
 			line_splited = strtok(NULL, ";");
@@ -50,6 +53,7 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 				 touche_image_x_action, touche_image_y_action);
 		}
 	}
+
 
 	if (!is_comment(line)) {
 		if (is_var(line)) {
@@ -181,8 +185,38 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 		}
 
         else if (is_while_loop(line)) {
+        	char* copy = malloc(strlen(line) + 1);
+        	if (copy) {
+        		strcpy(copy, line);
+        	}
         	if (condition(line, numbers_name, number_value, *count_number)) {
-                 printf("while");
+        		pipeline(line, numbers_name, number_value,
+					count_number, floats_name, float_value,
+					count_floats, strings_name,
+					strings_value, count_strings,
+					int_array_name, int_array_value,
+					count_number_int_array,
+					int_array_size_value, image_number,
+					image_url, image_x_position,
+					image_y_position, last_condition,
+					touche_number, touche_name,
+					touche_image_index_postion,
+					touche_image_x_action,
+					touche_image_y_action);
+
+        		pipeline(copy, numbers_name, number_value,
+					count_number, floats_name, float_value,
+					count_floats, strings_name,
+					strings_value, count_strings,
+					int_array_name, int_array_value,
+					count_number_int_array,
+					int_array_size_value, image_number,
+					image_url, image_x_position,
+					image_y_position, last_condition,
+					touche_number, touche_name,
+					touche_image_index_postion,
+					touche_image_x_action,
+					touche_image_y_action);
         	}
         }
 

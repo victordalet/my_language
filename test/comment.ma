@@ -1,2 +1,0 @@
-#salut;
-print("Hello, World!");

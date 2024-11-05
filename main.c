@@ -169,7 +169,6 @@ int main(int argc, char *argv[])
 	free(image_x_position);
 	free(image_y_position);
 
-	printf("\n");
 
 	return 0;
 }
