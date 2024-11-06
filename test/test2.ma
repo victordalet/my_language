@@ -7,5 +7,7 @@ if (d == 21): print("Test 3 not ok")
 else: print("Test 3 ok")
 if (d < 21): print("Test 4 ok")
 #print(f"{d}")
+lambda salut():print("hello world")
 system("touch test.txt")
 while (d < 10): print(f"{d}"); d = d + 1
+salut()
