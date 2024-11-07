@@ -37,4 +37,6 @@ int is_for_loop(char *line);
 
 int is_while_loop(char *line);
 
+int is_lambda_function(char *line);
+
 #endif

@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 	int count_strings = 0;
 	int count_floats = 0;
 	int count_number_int_array = 0;
+	int count_function;
 
 	char **numbers_name = malloc(count_number * sizeof(char *));
 	int *number_value = malloc(count_number * sizeof(int));
@@ -42,6 +43,9 @@ int main(int argc, char *argv[])
 	int **int_array_value = malloc(count_number_int_array * sizeof(int *));
 	int *int_array_size_value =
 	    malloc(count_number_int_array * sizeof(int));
+
+	char **function_name = malloc(count_function * sizeof(char *));
+	char **line_function = malloc(count_function * sizeof(char *));
 
 	/*--------------------------------------------------------------------------*/
 
@@ -68,6 +72,8 @@ int main(int argc, char *argv[])
 			number_line++;
 		}
 
+		char *file_name = argc >= 2 ? argv[1] : "";
+
 		pipeline(line, numbers_name, number_value, &count_number,
 			 floats_name, float_value, &count_floats,
 			 strings_name, strings_value, &count_strings,
@@ -76,7 +82,9 @@ int main(int argc, char *argv[])
 			 &image_number, image_url, image_x_position,
 			 image_y_position, &last_condition, &touche_number,
 			 touche_name, touche_image_index_postion,
-			 touche_image_x_action, touche_image_y_action);
+			 touche_image_x_action, touche_image_y_action,
+			 &count_function, function_name, line_function,
+			 number_line, file_name);
 		free(line);
 	}
 
@@ -153,6 +161,10 @@ int main(int argc, char *argv[])
 		free(int_array_name[i]);
 		free(int_array_value[i]);
 	}
+	for (int i = 0; i < count_function; i++) {
+		free(function_name[i]);
+		free(line_function[i]);
+	}
 	for (int i = 0; i < image_number; i++) {
 		free(image_url[i]);
 	}
@@ -165,6 +177,8 @@ int main(int argc, char *argv[])
 	free(int_array_name);
 	free(int_array_value);
 	free(int_array_size_value);
+	free(function_name);
+	free(line_function);
 	free(image_url);
 	free(image_x_position);
 	free(image_y_position);

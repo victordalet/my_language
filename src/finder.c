@@ -350,11 +350,27 @@ int is_while_loop(char *line)
 	return 0;
 }
 
+int is_lambda_function(char *line)
+{
+
+	char strcopy[100];
+	strcpy(strcopy, line);
+
+	char *first_element = strtok(strcopy, " ");
+
+	if (!strcmp(first_element, "lambda")) {
+		return 1;
+	}
+
+	return 0;
+
+}
+
 int is_var(char *line)
 {
 
 	if (is_while_loop(line) || is_for_loop(line) || is_condition(line)
-	    || is_else_condition(line))
+	    || is_else_condition(line) || is_lambda_function(line))
 		return 0;
 
 	int i = 0;
