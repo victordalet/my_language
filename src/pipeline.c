@@ -12,6 +12,7 @@
 #include "min.h"
 #include "sort.h"
 #include "lambda.h"
+#include "mean.h"
 
 void pipeline(char *line, char **numbers_name, int *number_value,
 	      int *count_number, char **floats_name, float *float_value,
@@ -59,7 +60,24 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 				 number_line, file_name);
 		}
 	}
-
+	  if (strstr(line, ".mean()") != NULL) {
+	        float result = -1;
+	
+	        if (line[0] == '[') {
+	            result = process_mean_direct(line);  
+	        }
+	        
+	        else {
+	            result = process_mean_variable(line, int_array_name, int_array_value, 
+	                                           count_number_int_array, int_array_size_value); 
+	        }
+	
+	        if (result != -1) {
+	            printf("%.2f\n", result);
+	        } else {
+	            printf("Erreur dans le calcul de la moyenne pour %s\n", line);
+	        }
+	    }
 	if (!is_comment(line)) {
 		if (is_var(line)) {
 			if (is_string(line)) {
