@@ -73,7 +73,7 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 	        }
 	
 	        if (result != -1) {
-	            printf("La moyenne de %s est : %.2f\n", line, result);
+	            printf("%.2f\n", result);
 	        } else {
 	            printf("Erreur dans le calcul de la moyenne pour %s\n", line);
 	        }

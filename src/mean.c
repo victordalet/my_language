@@ -45,8 +45,6 @@ float process_mean_direct(char *line) {
         return -1; 
     }
 
-    printf("Tableau direct : ");
-    print_array(array, array_size);
 
     float mean = calculate_mean(array, array_size);
     
@@ -65,9 +63,6 @@ float process_mean_variable(char *line, char **int_array_name, int **int_array_v
 
             int *array = int_array_value[i];
             int size = int_array_size_value[i];
-
-            printf("Tableau %s : ", array_name);
-            print_array(array, size);
 
             return calculate_mean(array, size);
         }
