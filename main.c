@@ -12,6 +12,7 @@
 #include "src/view.h"
 #include "src/press_event.h"
 #include "src/calcul.h"
+#include "src/mean.h"
 #include <math.h>
 #include <SDL2/SDL.h>
 
