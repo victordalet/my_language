@@ -60,6 +60,20 @@ void pipeline(char *line, char **numbers_name, int *number_value,
 				 number_line, file_name);
 		}
 	}
+	if (strstr(line, "for") != NULL) {  
+        handle_for_loop(line, numbers_name, number_value,
+                         count_number, floats_name, float_value,
+                         count_floats, strings_name, strings_value,
+                         count_strings, int_array_name, int_array_value,
+                         count_number_int_array, int_array_size_value,
+                         image_number, image_url, image_x_position,
+                         image_y_position, last_condition, touche_number,
+                         touche_name, touche_image_index_postion,
+                         touche_image_x_action, touche_image_y_action,
+                         count_function, function_name, line_function,
+                         number_line, file_name);
+    }
+	
 	  if (strstr(line, ".mean()") != NULL) {
 	        float result = -1;
 	
