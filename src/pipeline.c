@@ -13,6 +13,7 @@
 #include "sort.h"
 #include "lambda.h"
 #include "mean.h"
+#include "for.h"
 
 void pipeline(char *line, char **numbers_name, int *number_value,
 	      int *count_number, char **floats_name, float *float_value,
