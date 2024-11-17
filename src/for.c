@@ -56,7 +56,7 @@ void handle_for_loop(char *line, char **numbers_name, int *number_value,
             }
         }
 
-        printf("Loop iteration %d: %s = %d\n", i, var, number_value[0]);
+        printf("Loop iteration %d: %s = %d\n", i, var, i);
     }
 
 
