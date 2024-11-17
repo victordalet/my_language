@@ -13,6 +13,7 @@
 #include "src/press_event.h"
 #include "src/calcul.h"
 #include "src/mean.h"
+#include "src/for.h"
 #include <math.h>
 #include <SDL2/SDL.h>
 
