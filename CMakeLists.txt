@@ -25,6 +25,7 @@ add_executable(my_language main.c
         src/calcul.c
         src/lambda.c
         src/mean.c
+        src/for.c
 )
 
 target_link_libraries(my_language -lm ${SDL2_LIBRARIES})
